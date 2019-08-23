@@ -1,17 +1,7 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext } from 'react';
 import { CityContext } from './CityContext';
-import { format } from 'date-fns';
-import { fromUnixTime } from 'date-fns/esm';
-import Cloudy from '../Weather animations/Cloudy';
-import FewClouds from '../Weather animations/FewClouds';
-import FewCloudsNight from '../Weather animations/FewCloudsNight';
-import Night from '../Weather animations/Night';
-import Rainy from '../Weather animations/Rainy';
-import Snow from '../Weather animations/Snow';
-import Sunny from '../Weather animations/Sunny';
-import ThunderStorm from '../Weather animations/ThunderStorm';
-
-const weather = require('openweather-apis');
+import { format, fromUnixTime } from 'date-fns';
+import AnimationHandler from './AnimationHandler';
 
 // const day = format(new Date(2014, 1, 11), 'E..EEE');
 // console.log(day);
@@ -21,9 +11,9 @@ const weather = require('openweather-apis');
 // console.log(unixtoDate);
 
 const TodayWeather = () => {
-  const [cityInfo, setCityInfo] = useContext(CityContext);
+  const [cityInfo] = useContext(CityContext);
 
-  const temperature = () => {
+  const Temperature = () => {
     const temp = cityInfo.todayWeather.temp;
     const tempSymbol = cityInfo.tempLabel === 'imperial' ? '°F' : '°C';
 
@@ -35,7 +25,7 @@ const TodayWeather = () => {
     );
   };
 
-  const extraInfo = () => {
+  const TopExtraInfo = () => {
     const handleWindInfo = () => {
       if (cityInfo.tempLabel === 'imperial') {
         return ' mph';
@@ -50,56 +40,57 @@ const TodayWeather = () => {
 
     return (
       <div className="extraInfo">
-        <div className="humidity">{humidity}</div>
-        <div className="airPressure">{airPressure}</div>
-        <div className="windSpeed">{windSpeed}</div>
+        <div className="humidity">Humidity: {humidity}</div>
+        <div className="airPressure">Air Pressure: {airPressure}</div>
+        <div className="windSpeed">Wind Speed: {windSpeed}</div>
       </div>
     );
   };
 
-  const getAnimation = () => {
+  const BottomInfo = () => {
+    const city =
+      cityInfo.todayWeather.city + ', ' + cityInfo.todayWeather.country;
+    const description = cityInfo.todayWeather.weatherDesc;
+    const sunrise = fromUnixTime(cityInfo.todayWeather.sunrise)
+      .toTimeString()
+      .slice(0, 5);
+
+    const sunset = fromUnixTime(cityInfo.todayWeather.sunset)
+      .toTimeString()
+      .slice(0, 5);
+
+    return (
+      <div className="botInfo">
+        <div className="city">{city}</div>
+        <div className="description">{description}</div>
+        <div className="sunrise">Sunrise: {sunrise}</div>
+        <div className="sunset">Sunset: {sunset}</div>
+      </div>
+    );
+  };
+
+  const GetAnimation = () => {
     const aniID = cityInfo.todayWeather.animation;
-    const cloudyIDs = ['03d', '03n', '04d', '04n'];
-    if (cloudyIDs.includes(aniID)) {
-      return Cloudy;
-    } else if () {
-      return FewClouds
-    } else if () {
-      return FewCloudsNight
-    } else if () {
-      return Night
-    }
+
+    return AnimationHandler(aniID);
   };
 
   return (
     <div className="curWeather-container">
       <div className="curWeather-top">
-        <div>{temperature()}</div>
-        <div>{extraInfo()}</div>
+        <Temperature />
+        <TopExtraInfo />
+        <GetAnimation />
       </div>
-      <div className="curWeather-bottom" />
+      <div className="curWeather-bottom">
+        <BottomInfo />
+      </div>
     </div>
   );
 };
 
 export default TodayWeather;
 
-//Data I'm grabbing
-//
-//(this is for single day pull)
-//
-//--Todays Info--
-//*Temp -           .main.temp (cityInfo.tempLabel)
-//*humidity -       .main.humidity (%)
-//*air pressure -   .main.pressure (hPa)
-//wind speed -      .
-//*weather descr -  .weather.0.description
-//*determine anim - .weather.0.icon  (make function to determine which one form that)
-//sunrise           .sys.sunrise (convert to hrs:min)
-//sunset            .sys.sunset (convert to hrs:min)
-//city              .name
-//country           .sys.country
-//
 //(5day forecast - WILL NEEED ANOTHER CALL TO FORECAST INSTEAD OF WEEKLY)
 //
 //(repeat for 3 days)
