@@ -1,25 +1,40 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useContext, useState } from 'react';
 import './App.css';
+import { CityProvider } from './Components/CityContext';
+import TodayWeather from './Components/TodayWeather';
+import Search from './Components/Search';
+
+const weather = require('openweather-apis');
+weather.setLang('en');
+weather.setAPPID('e07d8ddac54eade82bcdb237b5cf6279');
+weather.setUnits('imperial');
 
 function App() {
+  // weather.setCity('san francisco');
+
+  // weather.getTemperature((err, temp) => {
+  //   console.log(temp);
+  // });
+
+  //   // weather.getDescription((err, desc) => {
+  //   //   console.log(desc);
+  //   // });
+
+  //   // weather.getWeatherForecast((err, forecast) => {
+  //   //   console.log(forecast);
+  //   // });
+
+  //   // weather.getAllWeather((err, obj) => {
+  //   //   console.log(obj);
+  //   // });
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <CityProvider>
+      <div className="App">
+        <Search />
+        <TodayWeather />
+      </div>
+    </CityProvider>
   );
 }
 
