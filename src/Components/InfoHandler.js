@@ -1,5 +1,6 @@
 import { useContext, useEffect } from 'react';
 import { CityContext } from './CityContext';
+import { format, fromUnixTime } from 'date-fns';
 
 const InfoHandler = () => {
   const [cityInfo, setCityInfo] = useContext(CityContext);
@@ -60,11 +61,18 @@ const InfoHandler = () => {
   };
 
   const weeklyInfoHandler = weekData => {
+    // Gets the day (Mon, Tue, etc)
+    const getDay = unixTime => {
+      return fromUnixTime(unixTime)
+        .toDateString()
+        .slice(0, 3);
+    };
+
     let weeklyOBJ = weekData.map(day => {
       return {
         temp: day.main.temp,
-        weatherDesc: day.weather[0].description,
-        animation: day.weather[0].icon
+        animation: day.weather[0].icon,
+        day: getDay(day.dt)
       };
     });
 
