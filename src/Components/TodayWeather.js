@@ -2,6 +2,14 @@ import React, { useContext, useState } from 'react';
 import { CityContext } from './CityContext';
 import { format } from 'date-fns';
 import { fromUnixTime } from 'date-fns/esm';
+import Cloudy from '../Weather animations/Cloudy';
+import FewClouds from '../Weather animations/FewClouds';
+import FewCloudsNight from '../Weather animations/FewCloudsNight';
+import Night from '../Weather animations/Night';
+import Rainy from '../Weather animations/Rainy';
+import Snow from '../Weather animations/Snow';
+import Sunny from '../Weather animations/Sunny';
+import ThunderStorm from '../Weather animations/ThunderStorm';
 
 const weather = require('openweather-apis');
 
@@ -19,12 +27,57 @@ const TodayWeather = () => {
     const temp = cityInfo.todayWeather.temp;
     const tempSymbol = cityInfo.tempLabel === 'imperial' ? '°F' : '°C';
 
-    console.log(temp, tempSymbol);
+    return (
+      <div className="daysTemp">
+        {temp}
+        <span className="tempSymbol">{tempSymbol}</span>
+      </div>
+    );
+  };
+
+  const extraInfo = () => {
+    const handleWindInfo = () => {
+      if (cityInfo.tempLabel === 'imperial') {
+        return ' mph';
+      } else {
+        return ' m/s';
+      }
+    };
+
+    const humidity = cityInfo.todayWeather.humidity + '%';
+    const airPressure = cityInfo.todayWeather.airPressure + ' hPa';
+    const windSpeed = cityInfo.todayWeather.windSpeed + handleWindInfo();
+
+    return (
+      <div className="extraInfo">
+        <div className="humidity">{humidity}</div>
+        <div className="airPressure">{airPressure}</div>
+        <div className="windSpeed">{windSpeed}</div>
+      </div>
+    );
+  };
+
+  const getAnimation = () => {
+    const aniID = cityInfo.todayWeather.animation;
+    const cloudyIDs = ['03d', '03n', '04d', '04n'];
+    if (cloudyIDs.includes(aniID)) {
+      return Cloudy;
+    } else if () {
+      return FewClouds
+    } else if () {
+      return FewCloudsNight
+    } else if () {
+      return Night
+    }
   };
 
   return (
-    <div>
-      <h1>{}</h1>
+    <div className="curWeather-container">
+      <div className="curWeather-top">
+        <div>{temperature()}</div>
+        <div>{extraInfo()}</div>
+      </div>
+      <div className="curWeather-bottom" />
     </div>
   );
 };

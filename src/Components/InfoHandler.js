@@ -4,11 +4,9 @@ import { CityContext } from './CityContext';
 const InfoHandler = () => {
   const [cityInfo, setCityInfo] = useContext(CityContext);
 
-  const dailyInfo = {};
-
+  //handle diff api calls
   const todayAPI = 'weather';
   const weeklyAPI = 'forecast';
-
   const makeAPIURL = api => {
     return (
       'http://api.openweathermap.org/data/2.5/' +
@@ -38,42 +36,27 @@ const InfoHandler = () => {
     weeklyInfoHandler(filteredWeekly);
   }
 
-  const dailyInfoHandler = obj => {
-    dailyInfo.temp = obj.main.temp;
-    dailyInfo.humidity = obj.main.humidity;
-    dailyInfo.airPressure = obj.main.pressure;
-    dailyInfo.windSpeed = obj.wind.speed;
-    dailyInfo.weatherDesc = obj.weather[0].description;
-    dailyInfo.animation = obj.weather[0].icon;
-    dailyInfo.sunrise = obj.sys.sunrise;
-    dailyInfo.sunset = obj.sys.sunset;
-    dailyInfo.city = obj.name;
-    dailyInfo.country = obj.sys.country;
+  const dailyInfoHandler = weekInfo => {
+    const dailyInfo = {};
 
-    // console.log(dailyInfo);
+    dailyInfo.temp = weekInfo.main.temp;
+    dailyInfo.humidity = weekInfo.main.humidity;
+    dailyInfo.airPressure = weekInfo.main.pressure;
+    dailyInfo.windSpeed = weekInfo.wind.speed;
+    dailyInfo.weatherDesc = weekInfo.weather[0].description;
+    dailyInfo.animation = weekInfo.weather[0].icon;
+    dailyInfo.sunrise = weekInfo.sys.sunrise;
+    dailyInfo.sunset = weekInfo.sys.sunset;
+    dailyInfo.city = weekInfo.name;
+    dailyInfo.country = weekInfo.sys.country;
 
-    // Set cityInfo.todayWeather to this
-    // setCityInfo(prevCityInfo => ({
-    //   city: prevCityInfo.city,
-    //   tempLabel: prevCityInfo.tempLabel,
-    //   todayWeather: dailyInfo,
-    //   weeklyWeather: prevCityInfo.weeklyWeather,
-    //   prevCities: prevCityInfo.prevCities
-    // }));
-
-    // setTodayWeather(dailyInfo);
-  };
-
-  const setTodayWeather = info => {
     setCityInfo(prevCityInfo => ({
       city: prevCityInfo.city,
       tempLabel: prevCityInfo.tempLabel,
-      todayWeather: info,
+      todayWeather: dailyInfo,
       weeklyWeather: prevCityInfo.weeklyWeather,
       prevCities: prevCityInfo.prevCities
     }));
-
-    console.log(cityInfo);
   };
 
   const weeklyInfoHandler = weekData => {
@@ -85,20 +68,13 @@ const InfoHandler = () => {
       };
     });
 
-    // //Set cityInfo.weeklyWeather to this
-    // setWeeklyWeather(weeklyOBJ);
-  };
-
-  const setWeeklyWeather = info => {
     setCityInfo(prevCityInfo => ({
       city: prevCityInfo.city,
       tempLabel: prevCityInfo.tempLabel,
       todayWeather: prevCityInfo.todayWeather,
-      weeklyWeather: info,
+      weeklyWeather: weeklyOBJ,
       prevCities: prevCityInfo.prevCities
     }));
-
-    console.log(cityInfo);
   };
 
   const handleError = err => {
@@ -112,7 +88,9 @@ const InfoHandler = () => {
     getWeeklyWeather().catch(err => {
       handleError(err);
     });
-  }, [cityInfo.city]);
+
+    // setTodayWeather(dailyInfo);
+  }, [cityInfo.city, cityInfo.tempLabel]);
 };
 
 export default InfoHandler;
