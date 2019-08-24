@@ -28,7 +28,7 @@ const InfoHandler = () => {
   }
 
   async function getWeeklyWeather() {
-    const response = await fetch(makeAPIURL(weeklyAPI));
+    const response = await fetch(makeAPIURL(weeklyAPI), { mode: 'cors' });
     const weeklyJSON = await response.json();
     const filteredWeekly = weeklyJSON.list.filter(
       i => i.dt_txt.slice(11, 16) === '12:00'
