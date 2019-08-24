@@ -18,7 +18,7 @@ const TodayWeather = () => {
           {temp}
           <span className="tempSymbol">{tempSymbol}</span>
         </div>
-        <div className="city">{city}</div>
+        <div className="curCity">{city}</div>
       </>
     );
   };
