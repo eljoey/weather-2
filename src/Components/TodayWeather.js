@@ -65,7 +65,7 @@ const TodayWeather = () => {
     );
   };
 
-  const BottomInfo = () => {
+  const WeatherInfo = () => {
     const description = cityInfo.todayWeather.weatherDesc;
 
     return (
@@ -77,7 +77,6 @@ const TodayWeather = () => {
 
   const GetAnimation = () => {
     const aniID = cityInfo.todayWeather.animation;
-
     return AnimationHandler(aniID);
   };
 
@@ -88,7 +87,7 @@ const TodayWeather = () => {
       </div>
       <TopExtraInfo />
       <div className="weatherInfo">
-        {GetAnimation()} <BottomInfo />
+        {GetAnimation()} <WeatherInfo />
       </div>
     </div>
   );

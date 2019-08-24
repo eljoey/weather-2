@@ -10,7 +10,7 @@ const InfoHandler = () => {
   const weeklyAPI = 'forecast';
   const makeAPIURL = api => {
     return (
-      'http://api.openweathermap.org/data/2.5/' +
+      'https://api.openweathermap.org/data/2.5/' +
       api +
       '?q=' +
       cityInfo.city +
@@ -106,9 +106,3 @@ const InfoHandler = () => {
 };
 
 export default InfoHandler;
-
-// 'http://api.openweathermap.org/data/2.5/weather?q=' +
-//   cityInfo.city +
-//   '&units=' +
-//   cityInfo.tempLabel +
-//   '&APPID=e07d8ddac54eade82bcdb237b5cf6279';
