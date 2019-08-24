@@ -87,7 +87,8 @@ const TodayWeather = () => {
       </div>
       <TopExtraInfo />
       <div className="weatherInfo">
-        {GetAnimation()} <WeatherInfo />
+        {GetAnimation()}
+        <WeatherInfo />
       </div>
     </div>
   );

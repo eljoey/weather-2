@@ -15,7 +15,6 @@ const Search = () => {
     if (name.replace(/\s+/g, '') === '') {
       return;
     }
-    console.log(name);
 
     // Will move current city to previous cities and filter previous cities to remove duplicate searches of same city and limit to 5 total
     const newPrevCities = [cityInfo.city, ...cityInfo.prevCities];
