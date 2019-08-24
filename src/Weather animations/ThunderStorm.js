@@ -12,7 +12,6 @@ const ThunderStormAnimation = () => {
           x="0px"
           y="0px"
           viewBox="0 0 60.7 48.7"
-          style={{ 'enable-background': 'new 0 0 60.7 48.7;' }}
           xmlSpace="preserve"
         >
           <g id="Cloud_4">

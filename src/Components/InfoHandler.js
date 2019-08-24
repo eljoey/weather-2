@@ -1,6 +1,6 @@
 import { useContext, useEffect } from 'react';
 import { CityContext } from './CityContext';
-import { format, fromUnixTime } from 'date-fns';
+import { fromUnixTime } from 'date-fns';
 
 const InfoHandler = () => {
   const [cityInfo, setCityInfo] = useContext(CityContext);
@@ -40,7 +40,7 @@ const InfoHandler = () => {
   const dailyInfoHandler = weekInfo => {
     const dailyInfo = {};
 
-    dailyInfo.temp = weekInfo.main.temp;
+    dailyInfo.temp = Math.floor(weekInfo.main.temp);
     dailyInfo.humidity = weekInfo.main.humidity;
     dailyInfo.airPressure = weekInfo.main.pressure;
     dailyInfo.windSpeed = weekInfo.wind.speed;
@@ -56,7 +56,8 @@ const InfoHandler = () => {
       tempLabel: prevCityInfo.tempLabel,
       todayWeather: dailyInfo,
       weeklyWeather: prevCityInfo.weeklyWeather,
-      prevCities: prevCityInfo.prevCities
+      prevCities: prevCityInfo.prevCities,
+      lastCitySel: prevCityInfo.lastCitySel
     }));
   };
 
@@ -68,9 +69,10 @@ const InfoHandler = () => {
         .slice(0, 3);
     };
 
+    //grabs all data wanted from each day and pujts into new array of objects
     let weeklyOBJ = weekData.map(day => {
       return {
-        temp: day.main.temp,
+        temp: Math.floor(day.main.temp),
         animation: day.weather[0].icon,
         day: getDay(day.dt)
       };
@@ -81,12 +83,14 @@ const InfoHandler = () => {
       tempLabel: prevCityInfo.tempLabel,
       todayWeather: prevCityInfo.todayWeather,
       weeklyWeather: weeklyOBJ,
-      prevCities: prevCityInfo.prevCities
+      prevCities: prevCityInfo.prevCities,
+      lastCitySel: prevCityInfo.lastCitySel
     }));
   };
 
   const handleError = err => {
     console.log(err);
+    cityInfo.city = cityInfo.lastCitySel;
   };
 
   useEffect(() => {

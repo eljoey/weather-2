@@ -12,7 +12,6 @@ const NightAnimation = () => {
           x="0px"
           y="0px"
           viewBox="0 0 30.8 42.5"
-          style={{ 'enable-background': 'new 0 0 30.8 42.5;' }}
           xmlSpace="preserve"
           height="70%"
           width="70%"

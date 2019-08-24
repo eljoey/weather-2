@@ -12,10 +12,9 @@ const SunnyAnimation = () => {
           x="0px"
           y="0px"
           viewBox="0 0 44.9 44.9"
-          style={{ 'enable-background': 'new 0 0 44.9 44.9;' }}
           xmlSpace="preserve"
-          height="70%"
-          width="70%"
+          height="100%"
+          width="100%"
         >
           <g id="Sun">
             <circle

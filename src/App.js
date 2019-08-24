@@ -1,14 +1,10 @@
-import React, { useContext, useState } from 'react';
+import React from 'react';
 import './App.css';
 import { CityProvider } from './Components/CityContext';
 import TodayWeather from './Components/TodayWeather';
 import Search from './Components/Search';
 import WeeklyForecast from './Components/WeeklyForecast';
-
-const weather = require('openweather-apis');
-weather.setLang('en');
-weather.setAPPID('e07d8ddac54eade82bcdb237b5cf6279');
-weather.setUnits('imperial');
+import PrevSearches from './Components/PrevSearches';
 
 function App() {
   return (
@@ -17,6 +13,7 @@ function App() {
         <Search />
         <TodayWeather />
         <WeeklyForecast />
+        <PrevSearches />
       </div>
     </CityProvider>
   );

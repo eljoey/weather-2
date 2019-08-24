@@ -12,7 +12,6 @@ const SnowAnimation = () => {
           x="0px"
           y="0px"
           viewBox="0 0 55.1 52.5"
-          style={{ 'enable-background': 'new 0 0 55.1 52.5;' }}
           xmlSpace="preserve"
         >
           <g id="Cloud_7">

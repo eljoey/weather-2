@@ -12,20 +12,24 @@ const Search = () => {
 
   const searchCity = e => {
     e.preventDefault();
-    if (name === '') return;
+    if (name.replace(/\s+/g, '') === '') {
+      return;
+    }
+    console.log(name);
 
-    // Will move current city to previous cities and filter previous cities to remove duplicate searches of same city
-    const newPrevCities = [...cityInfo.prevCities, cityInfo.city];
-    const filteredCities = newPrevCities.filter(
-      (city, index) => newPrevCities.indexOf(city) === index
-    );
+    // Will move current city to previous cities and filter previous cities to remove duplicate searches of same city and limit to 5 total
+    const newPrevCities = [cityInfo.city, ...cityInfo.prevCities];
+    const filteredCities = newPrevCities
+      .filter((city, index) => newPrevCities.indexOf(city) === index)
+      .slice(0, 5);
 
     setCityInfo(prevCityInfo => ({
       city: name,
       tempLabel: prevCityInfo.tempLabel,
       todayWeather: prevCityInfo.todayWeather,
       weeklyWeather: prevCityInfo.weeklyWeather,
-      prevCities: filteredCities
+      prevCities: filteredCities,
+      lastCitySel: prevCityInfo.city
     }));
 
     setName('');
@@ -37,16 +41,23 @@ const Search = () => {
       tempLabel: unit,
       todayWeather: prevCityInfo.todayWeather,
       weeklyWeather: prevCityInfo.weeklyWeather,
-      prevCities: [...prevCityInfo.prevCities]
+      prevCities: [...prevCityInfo.prevCities],
+      lastCitySel: prevCityInfo.lastCitySel
     }));
   };
 
+  // const checkSelected = unit => {
+  //   (unit = 'imperial') ? 'true' : 'false';
+  // };
+
+  //calls to rerender info
   InfoHandler();
 
   return (
     <div className="searchbar">
       <form onSubmit={searchCity}>
         <input
+          className="search"
           type="text"
           placeholder="Enter City or Place (eg. London or London, UK"
           value={name}
@@ -54,21 +65,27 @@ const Search = () => {
           key="1"
         />
       </form>
-      <div
-        className="imperial"
-        onClick={() => {
-          setTempUnit('imperial');
-        }}
-      >
-        °F
+      <div className="radioImperial">
+        <input
+          name="temp"
+          type="radio"
+          onClick={() => {
+            setTempUnit('imperial');
+          }}
+          checked={cityInfo.tempLabel === 'imperial'}
+        />
+        <span className="imperial">°F</span>
       </div>
-      <div
-        className="metric"
-        onClick={() => {
-          setTempUnit('metric');
-        }}
-      >
-        °C
+      <div className="radioMetric">
+        <input
+          name="temp"
+          type="radio"
+          onClick={() => {
+            setTempUnit('metric');
+          }}
+          checked={cityInfo.tempLabel === 'metric'}
+        />
+        <span className="metric">°C</span>
       </div>
     </div>
   );

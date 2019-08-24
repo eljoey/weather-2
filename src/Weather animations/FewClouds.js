@@ -12,7 +12,6 @@ const FewCloudsAnimation = () => {
           x="0px"
           y="0px"
           viewBox="0 0 61.7 42.8"
-          style={{ enableBackground: 'new 0 0 61.7 42.8;' }}
           xmlSpace="preserve"
         >
           <g id="Cloud_3">

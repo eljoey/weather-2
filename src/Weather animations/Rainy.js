@@ -12,7 +12,6 @@ const RainyAnimation = () => {
           x="0px"
           y="0px"
           viewBox="0 0 55.1 60"
-          style={{ enableBackground: 'new 0 0 55.1 49.5' }}
           xmlSpace="preserve"
         >
           <g id="Cloud_2">

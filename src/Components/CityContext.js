@@ -1,13 +1,12 @@
 import React, { useState, createContext, useEffect } from 'react';
 
-//setup
-
 const initialState = {
   city: 'BOSTON',
   tempLabel: 'metric',
   todayWeather: {},
   weeklyWeather: [],
-  prevCities: ['SAN FRANCISCO']
+  prevCities: ['BOSTON'],
+  lastCitySel: 'BOSTON'
 };
 
 const localState = JSON.parse(localStorage.getItem('cityInfo'));
