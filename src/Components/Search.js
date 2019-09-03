@@ -45,10 +45,6 @@ const Search = () => {
     }))
   }
 
-  // const checkSelected = unit => {
-  //   (unit = 'imperial') ? 'true' : 'false';
-  // };
-
   //calls to rerender info
   InfoHandler()
 
@@ -58,7 +54,7 @@ const Search = () => {
         <input
           className="search"
           type="text"
-          placeholder="Enter City or Place (eg. London or London, UK"
+          placeholder="Enter City or Place (eg. London or London, UK)"
           value={name}
           onChange={updateName}
           key="1"
