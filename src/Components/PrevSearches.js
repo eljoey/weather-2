@@ -8,6 +8,11 @@ const PrevSearches = () => {
     return key++
   }
 
+  const newPrevCities = [cityInfo.city, ...cityInfo.prevCities]
+  const filteredCities = newPrevCities
+    .filter((city, index) => newPrevCities.indexOf(city) === index)
+    .slice(0, 5)
+
   const prevSearchDisplay = () =>
     cityInfo.prevCities.map(city => (
       <div
@@ -19,7 +24,7 @@ const PrevSearches = () => {
             tempLabel: prevCityInfo.tempLabel,
             todayWeather: prevCityInfo.todayWeather,
             weeklyWeather: prevCityInfo.weeklyWeather,
-            prevCities: prevCityInfo.prevCities,
+            prevCities: filteredCities,
             lastCitySel: prevCityInfo.city
           }))
         }

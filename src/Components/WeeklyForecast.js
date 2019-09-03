@@ -1,15 +1,15 @@
-import React, { useContext } from 'react';
-import { CityContext } from './CityContext';
-import AnimationHandler from './AnimationHandler';
+import React, { useContext } from 'react'
+import { CityContext } from './CityContext'
+import AnimationHandler from './AnimationHandler'
 
 const WeeklyForecast = () => {
-  const [cityInfo] = useContext(CityContext);
-  let key = 0;
+  const [cityInfo] = useContext(CityContext)
+  let key = 0
   const getKey = () => {
-    return key++;
-  };
-  const tempSymbol = cityInfo.tempLabel === 'imperial' ? '°F' : '°C';
-  const weeklyInfo = cityInfo.weeklyWeather;
+    return key++
+  }
+  const tempSymbol = cityInfo.tempLabel === 'imperial' ? '°F' : '°C'
+  const weeklyInfo = cityInfo.weeklyWeather
 
   const weeklyData = () =>
     weeklyInfo.map(day => (
@@ -22,9 +22,9 @@ const WeeklyForecast = () => {
           {day.temp + ' ' + tempSymbol}
         </div>
       </div>
-    ));
+    ))
 
-  return <div className="weekDisplay">{weeklyData()}</div>;
-};
+  return <div className="weekDisplay">{weeklyData()}</div>
+}
 
-export default WeeklyForecast;
+export default WeeklyForecast
