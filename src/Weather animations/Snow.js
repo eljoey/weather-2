@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'
 
 const SnowAnimation = () => {
   return (
@@ -13,6 +13,8 @@ const SnowAnimation = () => {
           y="0px"
           viewBox="0 0 55.1 52.5"
           xmlSpace="preserve"
+          height="100%"
+          width="100%"
         >
           <g id="Cloud_7">
             <g id="White_cloud_7">
@@ -76,7 +78,7 @@ const SnowAnimation = () => {
         </svg>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default SnowAnimation;
+export default SnowAnimation

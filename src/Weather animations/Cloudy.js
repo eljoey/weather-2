@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'
 
 const CloudyAnimation = () => {
   return (
@@ -13,6 +13,8 @@ const CloudyAnimation = () => {
           y="0px"
           viewBox="0 0 60.7 40"
           xmlSpace="preserve"
+          height="100%"
+          width="100%"
         >
           <g id="Cloud_1">
             <g id="White_cloud_1">
@@ -74,7 +76,7 @@ const CloudyAnimation = () => {
         </svg>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default CloudyAnimation;
+export default CloudyAnimation

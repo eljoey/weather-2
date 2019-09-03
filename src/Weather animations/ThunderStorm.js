@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'
 
 const ThunderStormAnimation = () => {
   return (
@@ -13,6 +13,8 @@ const ThunderStormAnimation = () => {
           y="0px"
           viewBox="0 0 60.7 48.7"
           xmlSpace="preserve"
+          height="100%"
+          width="100%"
         >
           <g id="Cloud_4">
             <g id="White_cloud_4">
@@ -93,7 +95,7 @@ const ThunderStormAnimation = () => {
         </svg>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default ThunderStormAnimation;
+export default ThunderStormAnimation

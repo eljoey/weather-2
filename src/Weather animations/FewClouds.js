@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'
 
 const FewCloudsAnimation = () => {
   return (
@@ -13,6 +13,8 @@ const FewCloudsAnimation = () => {
           y="0px"
           viewBox="0 0 61.7 42.8"
           xmlSpace="preserve"
+          height="100%"
+          width="100%"
         >
           <g id="Cloud_3">
             <g id="White_cloud_3">
@@ -144,7 +146,7 @@ const FewCloudsAnimation = () => {
         </svg>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default FewCloudsAnimation;
+export default FewCloudsAnimation

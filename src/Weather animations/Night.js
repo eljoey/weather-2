@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'
 
 const NightAnimation = () => {
   return (
@@ -13,8 +13,8 @@ const NightAnimation = () => {
           y="0px"
           viewBox="0 0 30.8 42.5"
           xmlSpace="preserve"
-          height="70%"
-          width="70%"
+          height="60%"
+          width="60%"
         >
           <path
             id="Moon"
@@ -24,7 +24,7 @@ const NightAnimation = () => {
         </svg>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default NightAnimation;
+export default NightAnimation

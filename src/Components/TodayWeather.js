@@ -1,16 +1,16 @@
-import React, { useContext } from 'react';
-import { CityContext } from './CityContext';
-import { fromUnixTime } from 'date-fns';
-import AnimationHandler from './AnimationHandler';
+import React, { useContext } from 'react'
+import { CityContext } from './CityContext'
+import { fromUnixTime } from 'date-fns'
+import AnimationHandler from './AnimationHandler'
 
 const TodayWeather = () => {
-  const [cityInfo] = useContext(CityContext);
+  const [cityInfo] = useContext(CityContext)
 
   const Temperature = () => {
     const city =
-      cityInfo.todayWeather.city + ', ' + cityInfo.todayWeather.country;
-    const temp = cityInfo.todayWeather.temp;
-    const tempSymbol = cityInfo.tempLabel === 'imperial' ? '°F' : '°C';
+      cityInfo.todayWeather.city + ', ' + cityInfo.todayWeather.country
+    const temp = cityInfo.todayWeather.temp
+    const tempSymbol = cityInfo.tempLabel === 'imperial' ? '°F' : '°C'
 
     return (
       <>
@@ -20,28 +20,28 @@ const TodayWeather = () => {
         </div>
         <div className="curCity">{city}</div>
       </>
-    );
-  };
+    )
+  }
 
   const TopExtraInfo = () => {
     const handleWindInfo = () => {
       if (cityInfo.tempLabel === 'imperial') {
-        return ' mph';
+        return ' mph'
       } else {
-        return ' m/s';
+        return ' m/s'
       }
-    };
+    }
     const sunrise = fromUnixTime(cityInfo.todayWeather.sunrise)
       .toTimeString()
-      .slice(0, 5);
+      .slice(0, 5)
 
     const sunset = fromUnixTime(cityInfo.todayWeather.sunset)
       .toTimeString()
-      .slice(0, 5);
+      .slice(0, 5)
 
-    const humidity = cityInfo.todayWeather.humidity + '%';
-    const airPressure = cityInfo.todayWeather.airPressure + ' hPa';
-    const windSpeed = cityInfo.todayWeather.windSpeed + handleWindInfo();
+    const humidity = cityInfo.todayWeather.humidity + '%'
+    const airPressure = cityInfo.todayWeather.airPressure + ' hPa'
+    const windSpeed = cityInfo.todayWeather.windSpeed + handleWindInfo()
 
     return (
       <div className="extraInfo">
@@ -62,23 +62,18 @@ const TodayWeather = () => {
           <span>Sunset:</span> <span>{sunset}</span>
         </div>
       </div>
-    );
-  };
+    )
+  }
 
   const WeatherInfo = () => {
-    const description = cityInfo.todayWeather.weatherDesc;
+    const description = cityInfo.todayWeather.weatherDesc
 
     return (
       <div>
         <div className="description">{description}</div>
       </div>
-    );
-  };
-
-  const GetAnimation = () => {
-    const aniID = cityInfo.todayWeather.animation;
-    return AnimationHandler(aniID);
-  };
+    )
+  }
 
   return (
     <div className="curWeather-container">
@@ -87,11 +82,11 @@ const TodayWeather = () => {
       </div>
       <TopExtraInfo />
       <div className="weatherInfo">
-        {GetAnimation()}
+        <div>{AnimationHandler(cityInfo.todayWeather.animation)}</div>
         <WeatherInfo />
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default TodayWeather;
+export default TodayWeather

@@ -1,10 +1,10 @@
-import React from 'react';
-import './App.css';
-import { CityProvider } from './Components/CityContext';
-import TodayWeather from './Components/TodayWeather';
-import Search from './Components/Search';
-import WeeklyForecast from './Components/WeeklyForecast';
-import PrevSearches from './Components/PrevSearches';
+import React from 'react'
+import './App.css'
+import { CityProvider } from './Components/CityContext'
+import TodayWeather from './Components/TodayWeather'
+import Search from './Components/Search'
+import WeeklyForecast from './Components/WeeklyForecast'
+import PrevSearches from './Components/PrevSearches'
 
 function App() {
   return (
@@ -16,7 +16,7 @@ function App() {
         <PrevSearches />
       </div>
     </CityProvider>
-  );
+  )
 }
 
-export default App;
+export default App

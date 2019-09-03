@@ -1,26 +1,26 @@
-import React, { useState, useContext } from 'react';
-import { CityContext } from './CityContext';
-import InfoHandler from './InfoHandler';
+import React, { useState, useContext } from 'react'
+import { CityContext } from './CityContext'
+import InfoHandler from './InfoHandler'
 
 const Search = () => {
-  const [name, setName] = useState('');
-  const [cityInfo, setCityInfo] = useContext(CityContext);
+  const [name, setName] = useState('')
+  const [cityInfo, setCityInfo] = useContext(CityContext)
 
   const updateName = e => {
-    setName(e.target.value.toUpperCase());
-  };
+    setName(e.target.value.toUpperCase())
+  }
 
   const searchCity = e => {
-    e.preventDefault();
+    e.preventDefault()
     if (name.replace(/\s+/g, '') === '') {
-      return;
+      return
     }
 
     // Will move current city to previous cities and filter previous cities to remove duplicate searches of same city and limit to 5 total
-    const newPrevCities = [cityInfo.city, ...cityInfo.prevCities];
+    const newPrevCities = [cityInfo.city, ...cityInfo.prevCities]
     const filteredCities = newPrevCities
       .filter((city, index) => newPrevCities.indexOf(city) === index)
-      .slice(0, 5);
+      .slice(0, 5)
 
     setCityInfo(prevCityInfo => ({
       city: name,
@@ -29,10 +29,10 @@ const Search = () => {
       weeklyWeather: prevCityInfo.weeklyWeather,
       prevCities: filteredCities,
       lastCitySel: prevCityInfo.city
-    }));
+    }))
 
-    setName('');
-  };
+    setName('')
+  }
 
   const setTempUnit = unit => {
     setCityInfo(prevCityInfo => ({
@@ -42,15 +42,15 @@ const Search = () => {
       weeklyWeather: prevCityInfo.weeklyWeather,
       prevCities: [...prevCityInfo.prevCities],
       lastCitySel: prevCityInfo.lastCitySel
-    }));
-  };
+    }))
+  }
 
   // const checkSelected = unit => {
   //   (unit = 'imperial') ? 'true' : 'false';
   // };
 
   //calls to rerender info
-  InfoHandler();
+  InfoHandler()
 
   return (
     <div className="searchbar">
@@ -69,9 +69,9 @@ const Search = () => {
           name="temp"
           type="radio"
           onClick={() => {
-            setTempUnit('imperial');
+            setTempUnit('imperial')
           }}
-          checked={cityInfo.tempLabel === 'imperial'}
+          defaultChecked={cityInfo.tempLabel === 'imperial'}
         />
         <span className="imperial">°F</span>
       </div>
@@ -80,14 +80,14 @@ const Search = () => {
           name="temp"
           type="radio"
           onClick={() => {
-            setTempUnit('metric');
+            setTempUnit('metric')
           }}
-          checked={cityInfo.tempLabel === 'metric'}
+          defaultChecked={cityInfo.tempLabel === 'metric'}
         />
         <span className="metric">°C</span>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Search;
+export default Search
