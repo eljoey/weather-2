@@ -31,7 +31,7 @@ const InfoHandler = () => {
     const response = await fetch(makeAPIURL(weeklyAPI), { mode: 'cors' })
     const weeklyJSON = await response.json()
     const filteredWeekly = weeklyJSON.list.filter(
-      i => i.dt_txt.slice(11, 16) === '12:00'
+      time => time.dt_txt.slice(11, 16) === '12:00'
     )
 
     weeklyInfoHandler(filteredWeekly)
@@ -52,12 +52,8 @@ const InfoHandler = () => {
     dailyInfo.country = weekInfo.sys.country
 
     setCityInfo(prevCityInfo => ({
-      city: prevCityInfo.city,
-      tempLabel: prevCityInfo.tempLabel,
-      todayWeather: dailyInfo,
-      weeklyWeather: prevCityInfo.weeklyWeather,
-      prevCities: prevCityInfo.prevCities,
-      lastCitySel: prevCityInfo.lastCitySel
+      ...prevCityInfo,
+      todayWeather: dailyInfo
     }))
   }
 
@@ -79,17 +75,12 @@ const InfoHandler = () => {
     })
 
     setCityInfo(prevCityInfo => ({
-      city: prevCityInfo.city,
-      tempLabel: prevCityInfo.tempLabel,
-      todayWeather: prevCityInfo.todayWeather,
-      weeklyWeather: weeklyOBJ,
-      prevCities: prevCityInfo.prevCities,
-      lastCitySel: prevCityInfo.lastCitySel
+      ...prevCityInfo,
+      weeklyWeather: weeklyOBJ
     }))
   }
 
   const handleError = err => {
-    console.log(err)
     cityInfo.city = cityInfo.lastCitySel
   }
 

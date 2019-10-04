@@ -177,3 +177,39 @@ body {
   color: rgb(255, 255, 255);
   cursor: pointer;
 }
+
+/******************* Mobile ***********************/
+
+@media screen and (max-width: 800px) {
+  .App {
+    width: 90%;
+  }
+
+  .curWeather-container {
+    grid-template-columns: 1fr 3fr 3fr 1fr;
+    grid-template-rows: repeat(2, 15vh);
+    grid-template-areas: '. temp animation .' '. info info .';
+  }
+
+  .curTemp {
+    grid-area: temp;
+  }
+
+  .extraInfo {
+    grid-area: info;
+  }
+
+  .weatherInfo {
+    grid-area: animation;
+  }
+
+  .search::placeholder {
+    font-size: 10px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .cities {
+    font-size: 0.7rem;
+  }
+}

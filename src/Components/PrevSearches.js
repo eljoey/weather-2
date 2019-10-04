@@ -20,12 +20,9 @@ const PrevSearches = () => {
         key={getKey()}
         onClick={() =>
           setCityInfo(prevCityInfo => ({
+            ...prevCityInfo,
             city: city,
-            tempLabel: prevCityInfo.tempLabel,
-            todayWeather: prevCityInfo.todayWeather,
-            weeklyWeather: prevCityInfo.weeklyWeather,
-            prevCities: filteredCities,
-            lastCitySel: prevCityInfo.city
+            prevCities: filteredCities
           }))
         }
       >
