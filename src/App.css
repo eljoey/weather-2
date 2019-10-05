@@ -183,6 +183,7 @@ body {
 @media screen and (max-width: 800px) {
   .App {
     width: 90%;
+    margin-top: 25px;
   }
 
   .curWeather-container {
