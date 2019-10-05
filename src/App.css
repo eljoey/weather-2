@@ -190,7 +190,6 @@ body {
     grid-template-rows: 15fr 1fr 15fr;
     grid-template-areas:
       '. temp animation .'
-      '. . . .'
       '. info info .';
   }
 
