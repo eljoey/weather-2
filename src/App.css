@@ -183,12 +183,12 @@ body {
 @media screen and (max-width: 800px) {
   .App {
     width: 90%;
-    margin-top: 25px;
+    height: 100%;
   }
 
   .curWeather-container {
     grid-template-columns: 1fr 4fr 4fr 1fr;
-    grid-template-rows: 5px 20vh 5px 20vh 5px;
+    grid-template-rows: 5px 20vh 5px 25vh 5px;
     grid-template-areas:
       '. . . .'
       '. temp animation .'
