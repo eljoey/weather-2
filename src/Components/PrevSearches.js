@@ -5,7 +5,8 @@ const PrevSearches = () => {
   const [cityInfo, setCityInfo] = useContext(CityContext)
   let key = 99999
   const getKey = () => {
-    return key++
+    key++
+    return key
   }
 
   const newPrevCities = [cityInfo.city, ...cityInfo.prevCities]

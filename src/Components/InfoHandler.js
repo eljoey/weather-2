@@ -30,6 +30,7 @@ const InfoHandler = () => {
   async function getWeeklyWeather() {
     const response = await fetch(makeAPIURL(weeklyAPI), { mode: 'cors' })
     const weeklyJSON = await response.json()
+    //will break if OpenWeather adjusts placement of timestamps in api call
     const filteredWeekly = weeklyJSON.list.filter(
       time => time.dt_txt.slice(11, 16) === '12:00'
     )
@@ -58,7 +59,6 @@ const InfoHandler = () => {
   }
 
   const weeklyInfoHandler = weekData => {
-    // Gets the day (Mon, Tue, etc)
     const getDay = unixTime => {
       return fromUnixTime(unixTime)
         .toDateString()
